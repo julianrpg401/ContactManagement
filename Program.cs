@@ -1,3 +1,6 @@
+using ContactManagement.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace ContactManagement
 {
     public class Program
@@ -8,6 +11,13 @@ namespace ContactManagement
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // Get the database connection string
+            var connectionString = builder.Configuration.GetConnectionString("SqlConnection");
+
+            // Add EF configuration
+            builder.Services.AddDbContext<AppDbContext>(options
+                => options.UseSqlServer(connectionString));
 
             var app = builder.Build();
 
