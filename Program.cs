@@ -1,3 +1,4 @@
+using ContactManagement.DataAccess;
 using ContactManagement.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,8 @@ namespace ContactManagement
             // Add EF configuration
             builder.Services.AddDbContext<AppDbContext>(options
                 => options.UseSqlServer(connectionString));
+
+            builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
             var app = builder.Build();
 
