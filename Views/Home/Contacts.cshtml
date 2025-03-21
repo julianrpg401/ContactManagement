@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Contacts Page";
+}
+
+@model IEnumerable<ContactManagement.Models.Contact>
+
+<h1>Contactos</h1>
+<br />
+<table class="table table-striped-columns table-hover">
+    <thead>
+        <tr>
+            <th scope="col" class="text-center">Id</th>
+            <th scope="col" class="text-center">Nombre</th>
+            <th scope="col" class="text-center">Apellido</th>
+            <th scope="col" class="text-center">Email</th>
+            <th scope="col" class="text-center">Celular</th>
+            <th scope="col" class="text-center">Dirección</th>
+            <th scope="col" class="text-center">Ciudad</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        @foreach (Contact contact in Model)
+        {
+            <tr>
+                <th scope="row" class="text-center">@contact.ContactId</th>
+                <td class="text-center">@contact.FirstName</td>
+                <td class="text-center">@contact.LastName</td>
+                <td class="text-center">@contact.Email</td>
+                <td class="text-center">@contact.Phone</td>
+                <td class="text-center">@contact.Address</td>
+                <td class="text-center">@contact.City</td>
+                <td>
+                    <input type="submit" asp-action="DeleteContact" value="Eliminar" class="btn btn-danger fw-semibold" asp-for="@contact.ContactId" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
