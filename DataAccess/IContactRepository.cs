@@ -7,9 +7,10 @@ namespace ContactManagement.DataAccess
     {
         Task<IActionResult> AddContactAsync(Contact contact);
         Task<IActionResult> GetContactAsync(int id);
-        Task<IActionResult> GetContactsAsync();
+        Task<List<Contact>> GetContactsAsync();
         Task<IActionResult> DeleteContactAsync(int id);
         Task<IActionResult> UpdateContactAsync(int id, Contact contact);
         Task<IActionResult> DeleteContactsAsync();
+        Task<Contact?> ValidateContactAsync(Contact contact);
     }
 }
