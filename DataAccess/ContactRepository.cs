@@ -82,7 +82,7 @@ namespace ContactManagement.DataAccess
             }
         }
 
-        public async Task<IActionResult> GetContactAsync(int id)
+        public async Task<Contact?> GetContactAsync(int id)
         {
             try
             {
@@ -90,14 +90,14 @@ namespace ContactManagement.DataAccess
 
                 if (contact == null)
                 {
-                    return new NotFoundResult();
+                    return null!;
                 }
 
-                return new OkObjectResult(contact);
+                return contact;
             }
             catch (Exception ex)
             {
-                return new BadRequestObjectResult(new { Message = ex.Message });
+                throw new Exception(ex.Message);
             }
         }
 

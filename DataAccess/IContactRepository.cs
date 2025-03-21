@@ -6,7 +6,7 @@ namespace ContactManagement.DataAccess
     public interface IContactRepository
     {
         Task<IActionResult> AddContactAsync(Contact contact);
-        Task<IActionResult> GetContactAsync(int id);
+        Task<Contact?> GetContactAsync(int id);
         Task<List<Contact>> GetContactsAsync();
         Task<IActionResult> DeleteContactAsync(int id);
         Task<IActionResult> UpdateContactAsync(int id, Contact contact);
