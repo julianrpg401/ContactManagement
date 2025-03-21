@@ -17,38 +17,9 @@ namespace ContactManagement.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Contacts()
-        {
-            var contacts = await _contactRepository.GetContactsAsync();
-
-            return View(contacts);
-        }
-
-        [HttpGet]
         public IActionResult Index()
         {
             return View();
-        }
-
-        [HttpGet]
-        public async Task<List<Contact>> GetContacts()
-        {
-            return await _contactRepository.GetContactsAsync();
-        }
-
-        [HttpDelete]
-        public async Task<IActionResult> DeleteContact(int id)
-        {
-            try
-            {
-                await _contactRepository.DeleteContactAsync(id);
-
-                return RedirectToAction("Contacts");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { Message = ex.Message });
-            }
         }
 
         [HttpPost]
@@ -74,6 +45,56 @@ namespace ContactManagement.Controllers
                 ViewBag.Message = "El contacto se ha agregado con éxito.";
 
                 return View();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Contacts()
+        {
+            try
+            {
+                var contacts = await _contactRepository.GetContactsAsync();
+
+                return View(contacts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteContact(int Contactid)
+        {
+            try
+            {
+                await _contactRepository.DeleteContactAsync(Contactid);
+
+                return RedirectToAction("Contacts");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditContact(int id)
+        {
+            try
+            {
+                var contact = await _contactRepository.GetContactAsync(id);
+
+                if (contact == null)
+                {
+                    return NotFound();
+                }
+
+                return View(contact);
             }
             catch (Exception ex)
             {
