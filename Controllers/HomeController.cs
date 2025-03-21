@@ -17,6 +17,14 @@ namespace ContactManagement.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Contacts()
+        {
+            var contacts = await _contactRepository.GetContactsAsync();
+
+            return View(contacts);
+        }
+
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -26,6 +34,21 @@ namespace ContactManagement.Controllers
         public async Task<List<Contact>> GetContacts()
         {
             return await _contactRepository.GetContactsAsync();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteContact(int id)
+        {
+            try
+            {
+                await _contactRepository.DeleteContactAsync(id);
+
+                return RedirectToAction("Contacts");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
         }
 
         [HttpPost]
@@ -54,7 +77,7 @@ namespace ContactManagement.Controllers
             }
             catch (Exception ex)
             {
-                return new BadRequestObjectResult(new { Message = ex.Message });
+                return BadRequest(new { Message = ex.Message });
             }
         }
 
