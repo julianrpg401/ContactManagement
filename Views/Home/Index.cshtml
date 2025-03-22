@@ -6,45 +6,50 @@
 
 <h1>Agregar contacto</h1>
 <br />
-<form name="AddContact" asp-action="Index" method="post">
-    <div class="row">
-        <div class="form-group col-2">
-            <label asp-for="@Model.FirstName" class="control-label">Nombre</label>
-            <input asp-for="@Model.FirstName" class="form-control" type="text" />
-            <span asp-validation-for="FirstName" class="text-danger"></span>
+<div class="col-12 d-flex">
+    <form name="AddContact" asp-action="Index" method="post" class="col-6 d-flex flex-column justify-content-center">
+        <div class="row">
+            <div class="form-group col-3">
+                <label asp-for="@Model.FirstName" class="control-label">Nombre</label>
+                <input asp-for="@Model.FirstName" class="form-control" type="text" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group col-3" id="padding__right">
+                <label asp-for="@Model.LastName" class="control-label">Apellido</label>
+                <input asp-for="@Model.LastName" class="form-control" type="text" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
         </div>
-        <div class="form-group col-2" id="padding__right">
-            <label asp-for="@Model.LastName" class="control-label">Apellido</label>
-            <input asp-for="@Model.LastName" class="form-control" type="text" />
-            <span asp-validation-for="LastName" class="text-danger"></span>
+        <div class="form-group col-6">
+            <label asp-for="@Model.Email" class="control-label">Email</label>
+            <input asp-for="@Model.Email" class="form-control" type="text" />
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
+        <div class="form-group col-6">
+            <label asp-for="@Model.Phone" class="control-label">Celular</label>
+            <input asp-for="@Model.Phone" class="form-control" type="text" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+        <div class="form-group col-6">
+            <label asp-for="@Model.Address" class="control-label">Dirección</label>
+            <input asp-for="@Model.Address" class="form-control" type="text" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+        <div class="form-group col-6">
+            <label asp-for="@Model.City" class="control-label">Ciudad</label>
+            <input asp-for="@Model.City" class="form-control" type="text" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="submit" value="Agregar" class="btn btn-primary fw-semibold" />
+            <input type="reset" value="Limpiar" class="btn btn-secondary fw-semibold" />
+        </div>
+    </form>
+    <div class="col-4">
+        <img src="/img/avatar.png" alt="img" class="img-fluid" />
     </div>
-    <div class="form-group col-4">
-        <label asp-for="@Model.Email" class="control-label">Email</label>
-        <input asp-for="@Model.Email" class="form-control" type="text" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div class="form-group col-4">
-        <label asp-for="@Model.Phone" class="control-label">Celular</label>
-        <input asp-for="@Model.Phone" class="form-control" type="text" />
-        <span asp-validation-for="Phone" class="text-danger"></span>
-    </div>
-    <div class="form-group col-4">
-        <label asp-for="@Model.Address" class="control-label">Dirección</label>
-        <input asp-for="@Model.Address" class="form-control" type="text" />
-        <span asp-validation-for="Address" class="text-danger"></span>
-    </div>
-    <div class="form-group col-4">
-        <label asp-for="@Model.City" class="control-label">Ciudad</label>
-        <input asp-for="@Model.City" class="form-control" type="text" />
-        <span asp-validation-for="City" class="text-danger"></span>
-    </div>
-    <br />
-    <div class="form-group">
-        <input type="submit" value="Agregar" class="btn btn-primary fw-semibold" />
-        <input type="reset" value="Limpiar" class="btn btn-secondary fw-semibold" />
-    </div>
-</form>
+</div>
 <br />
 
 @if (!string.IsNullOrEmpty(ViewBag.Message))
