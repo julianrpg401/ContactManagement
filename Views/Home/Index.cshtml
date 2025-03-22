@@ -7,7 +7,7 @@
 <h1>Agregar contacto</h1>
 <br />
 <div class="col-12 d-flex">
-    <form name="AddContact" asp-action="Index" method="post" class="col-6 d-flex flex-column justify-content-center">
+    <form name="AddContact" id="addContactForm" asp-action="Index" method="post" class="col-6 d-flex flex-column justify-content-center">
         <div class="row">
             <div class="form-group col-3">
                 <label asp-for="@Model.FirstName" class="control-label">Nombre</label>
@@ -52,9 +52,9 @@
 </div>
 <br />
 
-@if (!string.IsNullOrEmpty(ViewBag.Message))
+@if (ViewBag.Message != null)
 {
-    <div class="alert alert-success">
+    <div class="alert @(ViewBag.MessageType == "success" ? "alert-success" : "alert-danger") col-4">
         @ViewBag.Message
     </div>
 }
@@ -63,4 +63,17 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
+    <script>
+        function resetForm() {
+            document.getElementById('addContactForm').reset();
+            // Restablecer manualmente los valores de los campos del formulario
+            document.getElementById('addContactForm').elements['FirstName'].value = '';
+            document.getElementById('addContactForm').elements['LastName'].value = '';
+            document.getElementById('addContactForm').elements['Email'].value = '';
+            document.getElementById('addContactForm').elements['Phone'].value = '';
+            document.getElementById('addContactForm').elements['Address'].value = '';
+            document.getElementById('addContactForm').elements['City'].value = '';
+        }
+    </script>
 }
