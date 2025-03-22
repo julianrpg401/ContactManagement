@@ -30,6 +30,8 @@ namespace ContactManagement.Controllers
                 if (!ModelState.IsValid)
                 {
                     ViewBag.Message = "Error al enviar, verifique los campos.";
+                    ViewBag.MessageType = "error";
+
                     return View(contact);
                 }
 
@@ -38,11 +40,15 @@ namespace ContactManagement.Controllers
                 if (existingContact != null)
                 {
                     ViewBag.Message = "Error al enviar. El número de celular o email ya existe.";
+                    ViewBag.MessageType = "error";
+
                     return View(contact);
                 }
 
                 await _contactRepository.AddContactAsync(contact);
+
                 ViewBag.Message = "El contacto se ha agregado con éxito.";
+                ViewBag.MessageType = "success";
 
                 return View();
             }
@@ -73,6 +79,23 @@ namespace ContactManagement.Controllers
             try
             {
                 await _contactRepository.DeleteContactAsync(Contactid);
+                TempData["Message"] = "Contacto borrado.";
+
+                return RedirectToAction("Contacts");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteAllContacts()
+        {
+            try
+            {
+                await _contactRepository.DeleteContactsAsync();
+                TempData["Message"] = "Todos los contactos han sido eliminados.";
 
                 return RedirectToAction("Contacts");
             }
