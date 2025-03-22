@@ -102,6 +102,21 @@ namespace ContactManagement.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> EditContact(int id, Contact contact)
+        {
+            try
+            {
+                await _contactRepository.UpdateContactAsync(id, contact);
+
+                return RedirectToAction("Contacts");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
