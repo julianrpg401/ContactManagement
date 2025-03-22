@@ -6,6 +6,21 @@
 
 <h1>Contactos</h1>
 <br />
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+    <br />
+}
+
+<div class="mb-3">
+    <form asp-action="DeleteAllContacts" method="post" class="d-inline">
+        <input type="submit" value="Eliminar Todos" class="btn btn-danger fw-semibold" />
+    </form>
+</div>
+<br />
 <table class="table table-striped-columns table-hover">
     <thead>
         <tr>
@@ -40,3 +55,11 @@
         }
     </tbody>
 </table>
+
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-success col-3 d-block">
+        @ViewBag.Message
+    </div>
+    <br />
+}
