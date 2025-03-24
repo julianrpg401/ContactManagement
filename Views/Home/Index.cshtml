@@ -63,17 +63,4 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-
-    <script>
-        function resetForm() {
-            document.getElementById('addContactForm').reset();
-            // Restablecer manualmente los valores de los campos del formulario
-            document.getElementById('addContactForm').elements['FirstName'].value = '';
-            document.getElementById('addContactForm').elements['LastName'].value = '';
-            document.getElementById('addContactForm').elements['Email'].value = '';
-            document.getElementById('addContactForm').elements['Phone'].value = '';
-            document.getElementById('addContactForm').elements['Address'].value = '';
-            document.getElementById('addContactForm').elements['City'].value = '';
-        }
-    </script>
 }
