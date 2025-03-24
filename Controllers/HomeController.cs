@@ -19,7 +19,7 @@ namespace ContactManagement.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return View(new Contact());
         }
 
         [HttpPost]
@@ -50,7 +50,7 @@ namespace ContactManagement.Controllers
                 ViewBag.Message = "El contacto se ha agregado con éxito.";
                 ViewBag.MessageType = "success";
 
-                return View();
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
