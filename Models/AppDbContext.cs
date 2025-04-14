@@ -9,5 +9,6 @@ namespace ContactManagement.Models
         }
 
         public DbSet<Contact> Contacts { get; set; } = null!;
+        public DbSet<User> Users { get; set; } = null!;
     }
 }
