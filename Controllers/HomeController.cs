@@ -130,6 +130,16 @@ namespace ContactManagement.Controllers
         {
             try
             {
+                var existingContact = await _contactRepository.ValidateContactAsync(contact);
+
+                if (existingContact != null)
+                {
+                    ViewBag.Message = "Error al enviar. El número de celular o email ya existe.";
+                    ViewBag.MessageType = "error";
+
+                    return View(contact);
+                }
+
                 await _contactRepository.UpdateContactAsync(id, contact);
 
                 return RedirectToAction("Contacts");
