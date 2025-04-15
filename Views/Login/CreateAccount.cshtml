@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Crear Cuenta";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@model ContactManagement.Models.User
+
+<h2 class="card-title mb-4">Register</h2>
+
+<form name="AddUser" asp-action="CreateAccount" method="post" class="my-login-validation" novalidate="">
+	<div class="form-group mb-2">
+		<label asp-for="@Model.UserName"></label>
+		<input asp-for="@Model.UserName" id="name" type="text" class="form-control" value="">
+		<div class="invalid-feedback">
+			¿Cuál es tu nombre?
+		</div>
+	</div>
+
+	<div class="form-group mb-2">
+		<label asp-for="@Model.Email"></label>
+		<input asp-for="@Model.Email" id="email" type="email" class="form-control" value="">
+		<div class="invalid-feedback">
+			Correo inválido
+		</div>
+	</div>
+
+	<div class="form-group mb-4">
+		<label asp-for="@Model.PasswordHash"></label>
+		<input asp-for="@Model.PasswordHash" id="password" type="password" class="form-control" value="">
+		<div class="invalid-feedback">
+			La contraseña es requerida
+		</div>
+	</div>
+
+	<div class="form-group m-0 mb-4">
+		<input type="submit" value="Crear Cuenta" class="btn btn-primary btn-block">
+	</div>
+
+	@if (ViewBag.Message != null)
+	{
+		<div class="alert @(ViewBag.MessageType == "success" ? "alert-success" : "alert-danger") col-4 mb-4">
+			@ViewBag.Message
+		</div>
+	}
+
+	<div class="mt-4 text-center">
+		Ya tienes una cuenta? <a href="index.html">Inicia Sesión</a>
+	</div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
