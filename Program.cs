@@ -20,6 +20,7 @@ namespace ContactManagement
             builder.Services.AddDbContext<AppDbContext>(options
                 => options.UseSqlServer(connectionString));
 
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
             var app = builder.Build();
@@ -41,7 +42,7 @@ namespace ContactManagement
             app.MapControllerRoute
             (
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}"
+                pattern: "{controller=Login}/{action=CreateAccount}/{id?}"
             ).WithStaticAssets();
 
             app.Run();
