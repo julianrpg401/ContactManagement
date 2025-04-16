@@ -56,5 +56,10 @@ namespace ContactManagement.Controllers
                 return BadRequest(new { Message = ex.Message });
             }
         }
+
+        public async Task<IActionResult> Login()
+        {
+            
+        }
     }
 }
