@@ -59,7 +59,14 @@ namespace ContactManagement.Controllers
 
         public async Task<IActionResult> Login()
         {
-            
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
         }
     }
 }
